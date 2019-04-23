@@ -7,6 +7,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import br.edu.puc.security.jwt.JWTAuthenticationFilter;
+import br.edu.puc.security.jwt.JWTLoginFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -18,27 +22,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http
+				.cors()
+	            .and()
+	            .csrf().disable()
 				.authorizeRequests()
+				.antMatchers("/login")
+				.permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
-				.httpBasic()
+				.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+		                UsernamePasswordAuthenticationFilter.class)
+				
+				.addFilterBefore(new JWTAuthenticationFilter(),
+		                UsernamePasswordAuthenticationFilter.class)
 			;
 		}
 		
 		@Override
 		protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-//			builder
-//				.inMemoryAuthentication()
-//				.withUser("flavio")
-//				.password("{noop}123")
-//				.roles("ADM")
-//				.and()
-//				.withUser("jose")
-//				.password("{noop}321")
-//				.roles("ADM")
-//			;
-			
 			builder
 				.userDetailsService(userDetailsService)
 				.passwordEncoder(new BCryptPasswordEncoder());
