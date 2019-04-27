@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import br.edu.puc.util.ConstantsEnum;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -16,7 +18,6 @@ public class TokenAuthenticationService {
 	static final long EXPIRATION_TIME = 860_000_000;
 	static final String SECRET = "MySecret";
 	static final String TOKEN_PREFIX = "Bearer";
-	static final String HEADER_STRING = "Authorization_jwt";
 								  
 	public static void addAuthentication(HttpServletResponse resp, String userName){
 		String JWT = Jwts.builder()
@@ -25,11 +26,11 @@ public class TokenAuthenticationService {
 						.signWith(SignatureAlgorithm.HS256, SECRET)
 						.compact();
 		
-		resp.addHeader(HEADER_STRING, TOKEN_PREFIX+" "+JWT);
+		resp.addHeader(ConstantsEnum.AUTHENTICATION_HEADER.getValue(), TOKEN_PREFIX+" "+JWT);
 	}
 	
 	public static Authentication getAuthentication(HttpServletRequest req){
-		String token = req.getHeader(HEADER_STRING);
+		String token = req.getHeader(ConstantsEnum.AUTHENTICATION_HEADER.getValue());
 		
 		if(token != null){
 			String userName = Jwts.parser()
