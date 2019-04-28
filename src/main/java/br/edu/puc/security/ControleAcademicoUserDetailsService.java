@@ -28,9 +28,10 @@ public class ControleAcademicoUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails toUserDetails(AccountUser user) {
+    	String[] roles =  (String[]) user.getRoles().stream().map(role->role.getName()).toArray(String[]::new);
         return User.withUsername(user.getName())
                    .password(user.getPassword())
-                   .roles("ADMIN")
+                   .roles(roles)
                    .build();
     }
 }
