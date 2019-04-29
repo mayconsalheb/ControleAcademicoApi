@@ -8,5 +8,10 @@ import javax.persistence.Table;
 public class MatriculaOnline extends MatriculaAbstract{
 
 	private static final long serialVersionUID = -100453641899042682L;
-
+	
+	public MatriculaOnline() {}
+	
+	public MatriculaOnline(String cpf, String nome, Integer idade, Integer codigoCurso, String email) {
+		super(cpf, nome, idade, codigoCurso, email);
+	}
 }

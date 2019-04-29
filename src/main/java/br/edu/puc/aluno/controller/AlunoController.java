@@ -15,9 +15,11 @@ public class AlunoController {
 	@Autowired
 	private MatriculaService matriculaService;
 
-	@PostMapping("/matricula")
-	public String inserirMatriculaOnline() {
-		return "matricula realizada";
+	@PostMapping("/inserirMatriculaOnline")
+	public Boolean inserirMatriculaOnline(@RequestParam String cpf, @RequestParam  String nome, 
+			@RequestParam  Integer idade, @RequestParam String email, @RequestParam  Integer codigoCurso) {
+		
+		return matriculaService.inserirMatriculaOnline(cpf, idade, nome, email, codigoCurso);
 	}
 	
 	@PostMapping("/trancarMatricula")

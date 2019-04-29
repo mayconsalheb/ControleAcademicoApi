@@ -14,7 +14,7 @@ public class MatriculaAbstract implements Serializable{
 	private static final long serialVersionUID = 364170474594722629L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
 	private String cpf;
@@ -28,6 +28,16 @@ public class MatriculaAbstract implements Serializable{
 	
 	private String email;
 
+	public MatriculaAbstract() {}
+	
+	public MatriculaAbstract(String cpf, String nome, Integer idade, Integer codigoCurso, String email) {
+		this.cpf = cpf;
+		this.nome = nome;
+		this.idade = idade;
+		this.codigoCurso = codigoCurso;
+		this.email = email;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -75,5 +85,4 @@ public class MatriculaAbstract implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 }

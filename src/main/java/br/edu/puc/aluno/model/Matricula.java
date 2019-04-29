@@ -12,7 +12,7 @@ public class Matricula extends MatriculaAbstract{
 	
 	@Column(name="st_ativo")
 	private boolean isAtivo;
-
+	
 	public boolean isAtivo() {
 		return isAtivo;
 	}

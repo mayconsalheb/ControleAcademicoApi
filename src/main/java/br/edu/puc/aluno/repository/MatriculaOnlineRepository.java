@@ -6,4 +6,6 @@ import br.edu.puc.aluno.model.MatriculaOnline;
 
 public interface MatriculaOnlineRepository extends JpaRepository<MatriculaOnline, Long>{
 
+	MatriculaOnline findByCpf(String cpf);
+
 }

@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            .and()
 	            .csrf().disable()
 				.authorizeRequests()
-				.antMatchers("/aluno/matricula")
+				.antMatchers("/aluno/inserirMatriculaOnline")
 				.permitAll()
 				.antMatchers("/login")
 				.permitAll()
