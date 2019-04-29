@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import br.edu.puc.model.AccountUser;
-import br.edu.puc.repository.AccountUserRepository;
+import br.edu.puc.security.model.AccountUser;
+import br.edu.puc.security.repository.AccountUserRepository;
 
 @Component
 public class ControleAcademicoUserDetailsService implements UserDetailsService {

@@ -1,4 +1,4 @@
-package br.edu.puc.controller;
+package br.edu.puc.security.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

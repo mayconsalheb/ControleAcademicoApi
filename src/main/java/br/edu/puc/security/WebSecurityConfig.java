@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            .and()
 	            .csrf().disable()
 				.authorizeRequests()
+				.antMatchers("/aluno/matricula")
+				.permitAll()
 				.antMatchers("/login")
 				.permitAll()
 				.anyRequest()

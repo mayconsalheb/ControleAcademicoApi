@@ -1,4 +1,4 @@
-package br.edu.puc.model;
+package br.edu.puc.security.model;
 
 import java.io.Serializable;
 import java.util.List;
